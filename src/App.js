@@ -1,5 +1,6 @@
 import './App.css';
 import TodoList from './Components/TodoList.js';
+import Content from './Components/Content.js';
 function App() {
   return (
     <div className="App">
@@ -8,7 +9,7 @@ function App() {
 		</div>
 		
 		<div className="ContentContainer">
-		<p>yeah</p>{/*Other API Content goes here*/}
+		<Content />{/*Other API Content goes here*/}
 		</div>
 		
 		<div className="TodoContainer">

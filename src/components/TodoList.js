@@ -54,7 +54,7 @@ submitHandler(e) {
 }
 	render(){
 		return(
-	<div>
+	<div className="todo">
   <h2>Todo list</h2>{/*this is some of the worst code i think ive ever written
 	first checks if theres anything to display,   then checks if listing is marked as completed in todoArray[x][1], then displays listing from todoArray[x][0], then there are buttons for marking listing as complete and removing a listing completely.*/}
 	{this.state.todoArray[0]==null ?  null : <p id="p0" style={{textDecoration:this.state.todoArray[0][1] ? "line-through":"none"}}>{this.state.todoArray[0][0]}<button onClick={this.lineTrue.bind(this, 0)}>Complete</button><button onClick={this.removeListing.bind(this, 0)}>Delete</button></p>}
