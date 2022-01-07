@@ -10,7 +10,7 @@
 
 .ContentContainer{
 	flex:1 7 70vh;
-	border:1px solid black;
+	border: 2px solid black;
 }
 .contentBox{
 	height:100%;
@@ -46,6 +46,8 @@
 }
 /*News related classes should be below this line -------*/
 .NewsBox{
+	margin-left:1vw;
+	margin-right:1vw;
 	height:51vh;
 }
 .NewsBox p{
@@ -55,8 +57,11 @@
 	margin-bottom:0;
 }
 .NewsInnerBox{
+	
+	height:51vh;
 	padding:0;
 	margin:0;
+	
 }
 .NewsUpper{
 	height:15vh;
@@ -73,5 +78,22 @@
 
 }
 .KeywordBox{
-	height:4vh;
+	background-color:#f5f7cd;
+	display: flex;
+	flex-direction:row;
+	height:8vh;
+	border:1px solid black;
+	justify-content:center;
+	
+}
+.KeywordText{
+	height:2.5vh;
+
+}
+.KeywordSubmit{
+	background-color:white;
+	height:5vh;
+	font-size:3vh;
+	margin-top:2vh;
+	
 }

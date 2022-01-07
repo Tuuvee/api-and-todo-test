@@ -77,10 +77,11 @@ submitHandler(e) {
 				<div className="KeywordBox">
 					<form id="KeywordForm" autoComplete="off" onSubmit={this.submitHandler}>
 						<label>Enter keyword (Max Length 25)<br />
-						<input type="text" id="KeywordInput" name="name" />
+						<input className="KeywordText" type="text" id="KeywordInput" name="name" />
 						</label>
-						<input type="button" value="Search" onClick={this.findArticle.bind(this)}/>
+						{/*<input className="KeywordSubmit" type="button" value="Search" onClick={this.findArticle.bind(this)}/>*/}
 					</form>
+					<button className="KeywordSubmit" onClick={this.findArticle.bind(this)}> Search </button>
 				</div>
 			</div>	
 		</div>
