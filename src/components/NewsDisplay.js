@@ -23,33 +23,42 @@ componentDidMount(){
 }
 findArticle(){
 	let keyWord;
-	if (document.getElementById("KeywordInput").value.length<26){
+	if (document.getElementById("KeywordInput").value.length<26 && document.getElementById("KeywordInput").value.length>0){
 		keyWord=document.getElementById("KeywordInput").value
-		let API_URL = `https://newsapi.org/v2/everything?q=${keyWord}&language=en&apiKey=${API_KEY}`;{/*API Key stored in .env in project root, you can get a free API key from https://newsapi.org */}
-	fetch(API_URL)
+		let API_URL = `https://newsapi.org/v2/everything?q=${keyWord}&language=en&apiKey=${API_KEY}`;/*API Key stored in .env in project root, you can get a free API key from https://newsapi.org */
+		fetch(API_URL)
+		.then(response => {
+		// indicates whether the response is successful (status code 200-299) or not
+		if (!response.ok) {
+			throw new Error(`Request failed with status ${response.status}`)
+		}
+		else{
+			return response.json()
+		}
+    })
+	
 	.then(response => {
-    // indicates whether the response is successful (status code 200-299) or not
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`)
-    }
-    return response.json()
-  })
-	.then(response => {
-	let random=Math.floor(Math.random()*19); {/*Creates a random number between 0 and 19 which I use to pick a random article from the first page of 20 articles the API provides for me to use*/}
-	let publishDate=(response.articles[random].publishedAt).slice(0,10);{/*I slice off the Time the article was published to only display the date*/}
-	this.setState({article_author : "Author(s): "+response.articles[random].author});{/*Next seven rows just assign values to display to the state object*/}
+		console.log(response)
+	if (response.totalResults==0){
+		alert('No results found bozo');
+	}
+	else{
+	let random=Math.floor(Math.random()*19); /*Creates a random number between 0 and 19 which I use to pick a random article from the first page of 20 articles the API provides for me to use*/
+	let publishDate=(response.articles[random].publishedAt).slice(0,10);/*I slice off the Time the article was published to only display the date*/
+	this.setState({article_author : "Author(s): "+response.articles[random].author});/*Next seven rows just assign values to display to the state object*/
 	this.setState({article_source : response.articles[random].source.name});
 	this.setState({article_title : response.articles[random].title});
 	this.setState({article_description : response.articles[random].description});
 	this.setState({article_content : response.articles[random].content});
 	this.setState({article_url : response.articles[random].url});
 	this.setState({article_publishedAt : publishDate});
-	document.getElementById("KeywordForm").reset(); {/*this clears the text input box for easier re-use*/}
-  })
-  .catch(error => console.log(error))
+	document.getElementById("KeywordForm").reset(); /*this clears the text input box for easier re-use*/
+		}
+	})
+	.catch(error => console.log(error))
 	}
 	else{
-		alert("Keyword too long bozo");
+		alert("Keyword too long or missing completely bozo");
 	}
 	
 }
@@ -66,6 +75,7 @@ submitHandler(e) {
 		<div className="NewsBox">{/*Layout stuff mainly*/}
 			<div className="NewsInnerBox">
 				<div className="NewsUpper">
+				<p> Find random article based on keyword</p>
 					<p> {this.state.article_source}   {this.state.article_publishedAt}</p>
 					<p> {this.state.article_title}</p>
 				</div>	

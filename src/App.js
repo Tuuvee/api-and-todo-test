@@ -1,11 +1,12 @@
 import './App.css';
 import TodoList from './Components/TodoList.js';
 import Content from './Components/Content.js';
+
 function App() {
   return (
     <div className="App">
-		<div className="WeatherContainer">
-		<p>yeah</p> {/*Weather display goes here when i get to it*/}
+		<div className="HeaderContainer">
+			<p>Really cool portfolio project </p>
 		</div>
 		
 		<div className="ContentContainer">
